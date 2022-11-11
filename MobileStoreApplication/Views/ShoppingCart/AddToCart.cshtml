@@ -1,0 +1,123 @@
+﻿@using MobileStoreApplication.Controllers;
+@using MobileStoreApplication.Models.Home;
+
+@{
+    ViewBag.Title = "AddToCart";
+}
+@{decimal s = 0; }
+@*<link href="~/Style/StyleSheet1.css" rel="stylesheet" />*@
+
+
+
+<head>
+</head>
+<style>
+    .sum 
+ {
+        font-size: larger;
+        font-weight: bolder;
+        color:black;
+    }
+    b{
+        color:black;
+    }
+</style>
+
+<h2>Cart Details</h2>
+<br />
+<table align="center">
+    <tr>
+
+        <th>
+            Brand Name
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            RAM Name
+        </th>
+        <th>
+            ROM Name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+        <th>Remove From Cart</th>
+
+    </tr>
+
+
+    @foreach (Item item in (List<Item>)Session["cart"])
+    {
+        s = s + item.DisplayImage1.Price.Value * item.Quantity;
+
+        <tr>
+
+            <td>
+                @item.DisplayImage1.BrandName
+            </td>
+            <td>
+                @item.DisplayImage1.ProductName
+            </td>
+            <td>
+                @item.DisplayImage1.RAMName
+            </td>
+            <td>
+                @item.DisplayImage1.ROMName
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @(item.DisplayImage1.Price *item.Quantity)
+            </td>
+
+            <td>
+                @Html.ActionLink("Delete", "Delete", "ShoppingCart", new { SNO = item.DisplayImage1.SNo, Quantity = item.Quantity }, null)
+            </td>
+        </tr>
+
+
+
+
+
+    }
+</table>
+<br />
+<table>
+    <tr>
+        <th class="sum">
+            <b> TOTAL = </b>
+        </th>
+        <th class="sum">
+            <b>Rs @s /-</b>
+        </th>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td> <button>@Html.ActionLink("CONTINUE SHOPPING....", "Index", "Home")</button></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        @if (s != 0)
+        {
+            @*<button>@Html.ActionLink("Proceed To Payment", "Payment", "ShoppingCart")</button>*@
+
+            <td><button>@Html.ActionLink("PROCEED TO PAYMENT", "Index", "Login")</button></td>
+        }
+    </tr>
+</table>

@@ -1,0 +1,78 @@
+﻿@using MobileStoreApplication.Models.Home
+@{
+    ViewBag.Title = "OrderCancel";
+}
+<style>
+    b {
+        color: black;
+    }
+</style>
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+}
+@*<h2>The Order Number<b> MW_@ViewBag.orderNumber</b> has been Cancelled</h2>*@
+@*<table>
+    <tr>
+
+        <th>
+            Brand Name
+        </th>
+        <th>
+            Product Name
+        </th>
+        <th>
+            RAM Name
+        </th>
+        <th>
+            ROM Name
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+
+    </tr>
+
+
+    @foreach (Item item in (List<Item>)Session["cart"])
+    {
+        //s = s + item.DisplayImage1.Price.Value * item.Quantity;
+
+        <tr>
+
+            <td>
+                @item.DisplayImage1.BrandName
+            </td>
+            <td>
+                @item.DisplayImage1.ProductName
+            </td>
+            <td>
+                @item.DisplayImage1.RAMName
+            </td>
+            <td>
+                @item.DisplayImage1.ROMName
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @(item.DisplayImage1.Price *item.Quantity)
+            </td>
+        </tr>
+
+
+
+    }
+    </table>*@
+@using (Html.BeginForm("SessionEmpty", "ShoppingCart", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @*<center><button>@Html.ActionLink("Cancel", "OrderCancel", "ShoppingCart", new { orderNumber = Item.orderNumber }, null)</button></center>*@
+    <center><button>Go To Home</button></center>
+}
+

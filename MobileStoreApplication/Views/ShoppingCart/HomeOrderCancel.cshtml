@@ -1,0 +1,80 @@
+﻿@model MobileStoreApplication.Models.Tbl_Order
+@using MobileStoreApplication.Controllers;
+@using MobileStoreApplication.Models.Home;
+
+@{
+    ViewBag.Title = "HomeOrderCancel";
+}
+
+
+<style>
+    b{
+        color:red;
+        font-size:smaller;
+    }
+</style>
+
+
+@using (Html.BeginForm("Result","ShoppingCart",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+  
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <form method="post">
+        <div>Enter Your OrderNumber</div>
+
+
+
+        <input type="text" placeholder="" name='orderNumber'>
+        @*@Html.ActionLink("Submit", "Result", "ShoppingCart", new { orderNumber =  }, null)
+            <input type="submit" value="Cancel Order" class="btn btn-default" />*@
+
+
+
+        @*<button type="submit" class="searchBtn">
+                <img src="~/Images/Search.JPG" height="25" width="25" />
+            </button>*@
+        <!--<a></>-->
+    </form>
+
+
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.OrderNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OrderNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OrderNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+
+    <div class="form-group">
+
+        <div class="col-md-2">
+
+          <b>  @ViewBag.ErrorMessage</b>
+
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Cancel Order" class="btn btn-default" />
+            @*@Html.ActionLink("Submit", "Result", "ShoppingCart", new { orderNumber =orderNumber},null)*@
+
+
+        </div>
+    </div>
+</div>
+}
+
+
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@

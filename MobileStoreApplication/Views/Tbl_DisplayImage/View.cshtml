@@ -1,0 +1,122 @@
+﻿@model MobileStoreApplication.Models.Tbl_DisplayImage
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>Tbl_DisplayImage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BrandName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BrandName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAMId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAMId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAMName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAMName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROMId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROMId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROMName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROMName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProcessorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProcessorId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProcessorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProcessorName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+           <img src="@Url.Content(Model.ImagePath)" width="200"height="200"/>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<style>
+    h3 {
+        font-size: 40px;
+        font-weight: bolder;
+        padding-top: 68px;
+    }
+</style>
+
+<h3>Contact</h3>
+<br />
+<address>
+    One Microsoft Way<br />
+    Redmond, WA 98052-6399<br />
+    <abbr title="Phone">P:</abbr>
+    425.555.0100
+</address>
+<br />
+<address>
+    <strong>Support:</strong>   <a href="mailto:Support@mobiworld.com">Support@mobiworld.com</a><br />
+    <strong>Marketing:</strong> <a href="mailto:Marketing@mobiworld.com">Marketing@mobiworld.com</a>
+</address>
+
+@using (Html.BeginForm("SessionEmpty", "ShoppingCart", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @*<center><button>@Html.ActionLink("Cancel", "OrderCancel", "ShoppingCart", new { orderNumber = Item.orderNumber }, null)</button></center>*@
+    <center><button>Go To Home</button></center>
+}

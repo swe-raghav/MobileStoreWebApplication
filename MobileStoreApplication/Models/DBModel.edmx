@@ -1,0 +1,334 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MobileStoreApplicationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Tbl_DisplayImage">
+          <Key>
+            <PropertyRef Name="SNo" />
+          </Key>
+          <Property Name="SNo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandId" Type="int" />
+          <Property Name="BrandName" Type="varchar" MaxLength="250" />
+          <Property Name="ProductId" Type="varchar" MaxLength="250" />
+          <Property Name="ProductName" Type="varchar" MaxLength="250" />
+          <Property Name="RAMId" Type="int" />
+          <Property Name="RAMName" Type="varchar" MaxLength="250" />
+          <Property Name="ROMId" Type="int" />
+          <Property Name="ROMName" Type="varchar" MaxLength="250" />
+          <Property Name="ProcessorId" Type="int" />
+          <Property Name="ProcessorName" Type="varchar" MaxLength="250" />
+          <Property Name="ImagePath" Type="varchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_LoginAndRegister">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="FirstName" Type="varchar" MaxLength="250" />
+          <Property Name="LastName" Type="varchar" MaxLength="250" />
+          <Property Name="EmailId" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="250" />
+          <Property Name="Address" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailId" Type="varchar" MaxLength="250" />
+          <Property Name="OrderNumber" Type="varchar" MaxLength="250" />
+          <Property Name="BrandName" Type="varchar" MaxLength="250" />
+          <Property Name="ProductName" Type="varchar" MaxLength="250" />
+          <Property Name="RAMName" Type="varchar" MaxLength="250" />
+          <Property Name="ROMName" Type="varchar" MaxLength="250" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK_Tbl_Order_Tbl_LoginAndRegister">
+          <End Role="Tbl_LoginAndRegister" Type="Self.Tbl_LoginAndRegister" Multiplicity="0..1" />
+          <End Role="Tbl_Order" Type="Self.Tbl_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_LoginAndRegister">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="Tbl_Order">
+              <PropertyRef Name="EmailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="cancelOorder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ordernumber" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="CancelOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ordernumber" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="cancelorders" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ordernumber" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Dropdown" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ordernumber" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetBySearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="search" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="MobileStoreApplicationModelStoreContainer">
+          <EntitySet Name="Tbl_DisplayImage" EntityType="Self.Tbl_DisplayImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_LoginAndRegister" EntityType="Self.Tbl_LoginAndRegister" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Order" EntityType="Self.Tbl_Order" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Tbl_Order_Tbl_LoginAndRegister" Association="Self.FK_Tbl_Order_Tbl_LoginAndRegister">
+            <End Role="Tbl_LoginAndRegister" EntitySet="Tbl_LoginAndRegister" />
+            <End Role="Tbl_Order" EntitySet="Tbl_Order" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MobileStoreApplicationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Tbl_DisplayImage">
+          <Key>
+            <PropertyRef Name="SNo" />
+          </Key>
+          <Property Name="SNo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="BrandName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RAMId" Type="Int32" />
+          <Property Name="RAMName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ROMId" Type="Int32" />
+          <Property Name="ROMName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProcessorId" Type="Int32" />
+          <Property Name="ProcessorName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Quantity" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="DBModels" annotation:LazyLoadingEnabled="false">
+          <EntitySet Name="Tbl_DisplayImage" EntityType="Self.Tbl_DisplayImage" />
+          <FunctionImport Name="GetBySearch" ReturnType="Collection(MobileStoreApplicationModel.GetBySearch_Result)">
+          <Parameter Name="search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Dropdown" ReturnType="Collection(MobileStoreApplicationModel.Dropdown_Result)">
+          <Parameter Name="ordernumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Tbl_LoginAndRegister" EntityType="MobileStoreApplicationModel.Tbl_LoginAndRegister" />
+          <EntitySet Name="Tbl_Order" EntityType="MobileStoreApplicationModel.Tbl_Order" />
+          <AssociationSet Name="FK_Tbl_Order_Tbl_LoginAndRegister" Association="MobileStoreApplicationModel.FK_Tbl_Order_Tbl_LoginAndRegister">
+            <End Role="Tbl_LoginAndRegister" EntitySet="Tbl_LoginAndRegister" />
+            <End Role="Tbl_Order" EntitySet="Tbl_Order" />
+          </AssociationSet>
+          <FunctionImport Name="CancelOrder">
+          <Parameter Name="ordernumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="cancelOorder">
+          <Parameter Name="ordernumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="cancelorders">
+          <Parameter Name="ordernumber" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetBySearch_Result">
+          <Property Type="Int32" Name="SNo" Nullable="false" />
+          <Property Type="Int32" Name="BrandId" Nullable="true" />
+          <Property Type="String" Name="BrandName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProductId" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="RAMId" Nullable="true" />
+          <Property Type="String" Name="RAMName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="ROMId" Nullable="true" />
+          <Property Type="String" Name="ROMName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="ProcessorId" Nullable="true" />
+          <Property Type="String" Name="ProcessorName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="Dropdown_Result">
+          <Property Type="Int32" Name="SNo" Nullable="false" />
+          <Property Type="Int32" Name="BrandId" Nullable="true" />
+          <Property Type="String" Name="BrandName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProductId" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="RAMId" Nullable="true" />
+          <Property Type="String" Name="RAMName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="ROMId" Nullable="true" />
+          <Property Type="String" Name="ROMName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="ProcessorId" Nullable="true" />
+          <Property Type="String" Name="ProcessorName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
+        <EntityType Name="Tbl_LoginAndRegister">
+          <Key>
+            <PropertyRef Name="EmailId" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Order" Relationship="MobileStoreApplicationModel.FK_Tbl_Order_Tbl_LoginAndRegister" FromRole="Tbl_LoginAndRegister" ToRole="Tbl_Order" />
+        </EntityType>
+        <EntityType Name="Tbl_Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailId" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="OrderNumber" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="BrandName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RAMName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ROMName" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Tbl_LoginAndRegister" Relationship="MobileStoreApplicationModel.FK_Tbl_Order_Tbl_LoginAndRegister" FromRole="Tbl_Order" ToRole="Tbl_LoginAndRegister" />
+        </EntityType>
+        <Association Name="FK_Tbl_Order_Tbl_LoginAndRegister">
+          <End Type="MobileStoreApplicationModel.Tbl_LoginAndRegister" Role="Tbl_LoginAndRegister" Multiplicity="0..1" />
+          <End Type="MobileStoreApplicationModel.Tbl_Order" Role="Tbl_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_LoginAndRegister">
+              <PropertyRef Name="EmailId" />
+            </Principal>
+            <Dependent Role="Tbl_Order">
+              <PropertyRef Name="EmailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="Dummy_Result">
+          <Property Type="Int32" Name="SNo" Nullable="false" />
+          <Property Type="Int32" Name="BrandId" Nullable="true" />
+          <Property Type="String" Name="BrandName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProductId" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ProductName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="RAMId" Nullable="true" />
+          <Property Type="String" Name="RAMName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="ROMId" Nullable="true" />
+          <Property Type="String" Name="ROMName" Nullable="true" MaxLength="250" />
+          <Property Type="Int32" Name="ProcessorId" Nullable="true" />
+          <Property Type="String" Name="ProcessorName" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="ImagePath" Nullable="true" />
+          <Property Type="Decimal" Name="Price" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Int32" Name="Quantity" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MobileStoreApplicationModelStoreContainer" CdmEntityContainer="DBModels">
+          <EntitySetMapping Name="Tbl_DisplayImage">
+            <EntityTypeMapping TypeName="MobileStoreApplicationModel.Tbl_DisplayImage">
+              <MappingFragment StoreEntitySet="Tbl_DisplayImage">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="SNo" ColumnName="SNo" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="RAMId" ColumnName="RAMId" />
+                <ScalarProperty Name="RAMName" ColumnName="RAMName" />
+                <ScalarProperty Name="ROMId" ColumnName="ROMId" />
+                <ScalarProperty Name="ROMName" ColumnName="ROMName" />
+                <ScalarProperty Name="ProcessorId" ColumnName="ProcessorId" />
+                <ScalarProperty Name="ProcessorName" ColumnName="ProcessorName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetBySearch" FunctionName="MobileStoreApplicationModel.Store.GetBySearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MobileStoreApplicationModel.GetBySearch_Result">
+                <ScalarProperty Name="SNo" ColumnName="SNo" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="RAMId" ColumnName="RAMId" />
+                <ScalarProperty Name="RAMName" ColumnName="RAMName" />
+                <ScalarProperty Name="ROMId" ColumnName="ROMId" />
+                <ScalarProperty Name="ROMName" ColumnName="ROMName" />
+                <ScalarProperty Name="ProcessorId" ColumnName="ProcessorId" />
+                <ScalarProperty Name="ProcessorName" ColumnName="ProcessorName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Dropdown" FunctionName="MobileStoreApplicationModel.Store.Dropdown">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MobileStoreApplicationModel.Dropdown_Result">
+                <ScalarProperty Name="SNo" ColumnName="SNo" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="RAMId" ColumnName="RAMId" />
+                <ScalarProperty Name="RAMName" ColumnName="RAMName" />
+                <ScalarProperty Name="ROMId" ColumnName="ROMId" />
+                <ScalarProperty Name="ROMName" ColumnName="ROMName" />
+                <ScalarProperty Name="ProcessorId" ColumnName="ProcessorId" />
+                <ScalarProperty Name="ProcessorName" ColumnName="ProcessorName" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Tbl_LoginAndRegister">
+            <EntityTypeMapping TypeName="MobileStoreApplicationModel.Tbl_LoginAndRegister">
+              <MappingFragment StoreEntitySet="Tbl_LoginAndRegister">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Order">
+            <EntityTypeMapping TypeName="MobileStoreApplicationModel.Tbl_Order">
+              <MappingFragment StoreEntitySet="Tbl_Order">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ROMName" ColumnName="ROMName" />
+                <ScalarProperty Name="RAMName" ColumnName="RAMName" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CancelOrder" FunctionName="MobileStoreApplicationModel.Store.CancelOrder" />
+          <FunctionImportMapping FunctionImportName="cancelOorder" FunctionName="MobileStoreApplicationModel.Store.cancelOorder" />
+          <FunctionImportMapping FunctionImportName="cancelorders" FunctionName="MobileStoreApplicationModel.Store.cancelorders" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

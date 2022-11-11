@@ -1,0 +1,84 @@
+﻿@using MobileStoreApplication.Controllers;
+@using MobileStoreApplication.Models.Home;
+@{
+    ViewBag.Title = "OrderTableUpdation";
+}
+@{decimal s = 0; }
+<style>
+    b{
+        color:black;
+    }
+</style>
+
+<h2>Your Order Number is<b> MW_@ViewBag.OrderNumber</b></h2>
+
+
+<table>
+    <tr>
+
+        <th>
+            BrandName
+        </th>
+        <th>
+            ProductName
+        </th>
+        <th>
+            RAMName
+        </th>
+        <th>
+            ROMName
+        </th>
+        <th>
+            Quantity
+        </th>
+        <th>
+            Price
+        </th>
+
+    </tr>
+
+
+    @foreach (Item item in (List<Item>)Session["cart"])
+    {
+        s = s + item.DisplayImage1.Price.Value * item.Quantity;
+
+        <tr>
+
+            <td>
+                @item.DisplayImage1.BrandName
+            </td>
+            <td>
+                @item.DisplayImage1.ProductName
+            </td>
+            <td>
+                @item.DisplayImage1.RAMName
+            </td>
+            <td>
+                @item.DisplayImage1.ROMName
+            </td>
+            <td>
+                @item.Quantity
+            </td>
+            <td>
+                @(item.DisplayImage1.Price *item.Quantity)
+            </td>
+        </tr>
+
+
+
+    }
+</table>
+<table>
+    <tr>
+        <th class="sum">
+            <b> TOTAL = </b>
+        </th>
+        <th class="sum">
+            <b>Rs @s /-</b>
+        </th>
+    </tr>
+</table>
+
+
+<BUTTON>@Html.ActionLink("CONTINUE TO PAYMENT", "Payment", "ShoppingCart", new { orderNumber = Item.orderNumber }, null)</BUTTON>
+

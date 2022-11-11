@@ -1,0 +1,135 @@
+﻿@using MobileStoreApplication.Controllers;
+@using MobileStoreApplication.Models.Home;
+@model MobileStoreApplication.Controllers.ShoppingCartController
+@{
+    ViewBag.Title = "Payment";
+}
+@{
+    if (Session["EmailId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    } }
+@{Random r = new Random();
+    int OrderNumber = r.Next();
+}
+    }
+
+
+ 
+
+    <h2>Payment Successfull!!!! </h2>
+    <h2>Your Order Number is<b> MW_@ViewBag.OrderNumber</b></h2>
+
+    @{decimal s = 0; }
+    @*<link href="~/Style/StyleSheet1.css" rel="stylesheet" />*@
+
+    <style>
+        b {
+            color: black;
+            font-weight: bolder;
+        }
+
+        body {
+            padding-top: 90px;
+        }
+
+        h2 {
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        table {
+            padding-left: 40px;
+            padding: 34px;
+            text-align: center;
+            border-spacing: 10px;
+            font-size: 19px;
+        }
+
+        tr, th {
+            border-spacing: 20px;
+        }
+    </style>
+    <body>
+        <table align="center">
+            <tr>
+
+                <th>
+                    Brand Name
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    RAM Name
+                </th>
+                <th>
+                    ROM Name
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Price
+                </th>
+
+            </tr>
+            <tr></tr>
+            <tr></tr>
+
+
+            @foreach (Item item in (List<Item>)Session["cart"])
+            {
+                s = s + item.DisplayImage1.Price.Value * item.Quantity;
+
+                <tr>
+
+                    <td>
+                        @item.DisplayImage1.BrandName
+                    </td>
+                    <td>
+                        @item.DisplayImage1.ProductName
+                    </td>
+                    <td>
+                        @item.DisplayImage1.RAMName
+                    </td>
+                    <td>
+                        @item.DisplayImage1.ROMName
+                    </td>
+                    <td>
+                        @item.Quantity
+                    </td>
+                    <td>
+                        @(item.DisplayImage1.Price * item.Quantity)
+                    </td>
+                </tr>
+
+
+
+
+
+            }
+        </table>
+
+        <br />
+        <table align="center">
+            <tr>
+                <th class="sum">
+                    GRAND TOTAL =
+                </th>
+                <th class="sum">
+                    Rs @s/-
+                </th>
+            </tr>
+
+        </table>
+        @using (Html.BeginForm("SessionEmpty", "ShoppingCart", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+        @*<center><button>@Html.ActionLink("Cancel", "OrderCancel", "ShoppingCart", new { orderNumber = Item.orderNumber }, null)</button></center>*@
+        <center><button>Go To Home</button></center>
+        }
+
+
+
+    </body>

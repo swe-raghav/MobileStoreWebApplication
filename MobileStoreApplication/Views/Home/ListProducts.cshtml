@@ -1,0 +1,217 @@
+﻿@using MobileStoreApplication.Models.Home
+@model MobileStoreApplication.Models.Home.HomeIndexViewModel
+@using MobileStoreApplication.Controllers
+
+
+@{
+    ViewBag.Title = "ListProducts";
+}
+
+<h2>ListProducts</h2>
+
+
+
+
+
+<h2>Shopping Cart Index</h2>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+    <link href="~/Style/StyleSheet1.css" rel="stylesheet" />
+
+</head>
+<body>
+    <script>
+function BrandFunction() {
+    document.getElementById("BrandDropdown").classList.toggle("show");
+
+}
+
+function PriceFunction() {
+    document.getElementById("PriceDropdown").classList.toggle("show");
+}
+
+function RAMFunction() {
+    document.getElementById("RAMDropdown").classList.toggle("show");
+}
+function ROMFunction() {
+    document.getElementById("ROMDropdown").classList.toggle("show");
+        }
+
+        function CartFunction() {
+            document.getElementById("CartDropdown").classList.toggle("show");
+        }
+
+function BrandfilterFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("MyInput");
+    filter = input.value.toUpperCase();
+    d = document.getElementById("BrandDropdown");
+    a = d.getElementsByTagName("a");
+    for (i = 0; i < a.length; i++) {
+        txtValue = a[i].textContent || a[i].innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+        } else {
+            a[i].style.display = "none";
+        }
+    }
+}
+
+
+function  FeaturefilterFunction() {
+    //var input, filter, ul, li, a, i;
+    //search = document.getElementById("btn").value;
+    search = document.getElementById("btn").value;
+    window.location.href = "@Url.Action("ExportData", "Home")?id=" + data;
+
+   // document.getElementById("demo").innerHTML = search;
+    //filter = input.value.toUpperCase();
+    //d = document.getElementById("FeatureDropdown");
+    //a = d.getElementsByTagName("a");
+    //for (i = 0; i < a.length; i++) {
+    //    txtValue = a[i].textContent || a[i].innerText;
+    //    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //        a[i].style.display = "";
+    //    } else {
+    //        a[i].style.display = "none";
+    //    }
+    //}
+}</script>
+
+    @*<script src="~/JavaScript/JavaScript.js"></script>*@
+    <div class="topnav1">
+        <div id="demo"></div>
+        <div class="dropdown">
+            <button onclick="BrandFunction()" class="dropbtn">BRANDS</button>
+            <div id="BrandDropdown" class="dropdown-content">
+                <!--input type="text" placeholder="Search.." id="FeatureInput" onkeyup="FeaturefilterFunction()"-->
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    @Html.EditorForModel()
+                    <br />
+                    <div><input type="submit" name="search" value="Samsung" /></div>
+                    <div> <input type="submit" name="search" value="Vivo" /></div>
+
+                }
+                @*<input type="submit" ,name="search" value="2 GB RAM" />
+                    <a href="/Home/About">4 GB RAM</a>
+                    <a href="/Home/About">8 GB RAM</a>
+                    <a href="/Home/About">16 GB RAM</a>*@
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button onclick="RAMFunction()" class="dropbtn">RAM</button>
+            <div id="RAMDropdown" class="dropdown-content">
+                <!--input type="text" placeholder="Search.." id="FeatureInput" onkeyup="FeaturefilterFunction()"-->
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    @Html.EditorForModel()
+                    <br />
+                    <div><input type="submit" name="search" value="2 GB RAM" /></div>
+                    <div> <input type="submit" name="search" value="4 GB RAM" /></div>
+                    <div><input type="submit" name="search" value="8 GB RAM" /></div>
+                    <div><input type="submit" name="search" value="16 GB RAM" /></div>
+                }
+                @*<input type="submit" ,name="search" value="2 GB RAM" />
+                    <a href="/Home/About">4 GB RAM</a>
+                    <a href="/Home/About">8 GB RAM</a>
+                    <a href="/Home/About">16 GB RAM</a>*@
+            </div>
+        </div>
+
+
+        <div class="dropdown">
+            <button onclick="ROMFunction()" class="dropbtn">ROM</button>
+            <div id="ROMDropdown" class="dropdown-content">
+                <!--input type="text" placeholder="Search.." id="FeatureInput" onkeyup="FeaturefilterFunction()"-->
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    @Html.EditorForModel()
+                    <br />
+                    <div><input type="submit" name="search" value="32 GB ROM" /></div>
+                    <div> <input type="submit" name="search" value="64 GB ROM" /></div>
+                    <div><input type="submit" name="search" value="128 GB ROM" /></div>
+                    <div><input type="submit" name="search" value="256 GB ROM" /></div>
+                }
+                @*<input type="submit" ,name="search" value="2 GB RAM" />
+                    <a href="/Home/About">4 GB RAM</a>
+                    <a href="/Home/About">8 GB RAM</a>
+                    <a href="/Home/About">16 GB RAM</a>*@
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button onclick="PriceFunction()" class="dropbtn">PRICE</button>
+            <div id="PriceDropdown" class="dropdown-content">
+                <a href="#about"> >10000</a>
+                <a href="#base">10000 to 20000</a>
+                <a href="#blog">
+                    < 30000
+                </a>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+        <form method="post">
+            <input type="text" placeholder="Search.." name="search">
+            @*<button type="submit" class="searchBtn">
+                    <img src="~/Images/Search.JPG" height="25" width="25" />
+                </button>*@
+            <!--<a></>-->
+        </form>
+
+
+
+        @*<hr />*@
+        <table cellpadding="100" cellspacing="100">
+            <!--<tr>-->
+            @*<th>SNo</th>*@
+            <!--<th>BrandName</th>
+                <th>ProductName</th>
+                <th>RAMName</th>
+                <th>ROMName</th>
+                <th>ProcessorName</th>
+                <th>Image</th>
+                <th>Price</th>
+            </tr>-->
+            @*@foreach (MobileStoreApplication.Models.Tbl_DisplayImage customer in Model)*@
+            @foreach (var customer in ViewBag.listProducts)
+            {
+                <tr>
+                    @*<td>@customer.SNo</td>*@
+
+                    <td>
+                        <pre>
+                        <b>
+                    @customer.BrandName</b>
+                        <i>@customer.ProductName</i>
+                    @customer.RAMName  @customer.ROMName @customer.ProcessorName
+                    Price: Rs @customer.Price /-</pre>
+                    </td>
+
+                    <td><img src="@Url.Content(@customer.ImagePath)" width="250" height="250" /></td>
+                    <td>
+                        @Html.ActionLink("Add To Cart", "AddToCart", "ShoppingCart", new {SNo= customer.SNo },null)
+                    </td>
+                </tr>
+            }
+        </table>
+</body>
+</html>

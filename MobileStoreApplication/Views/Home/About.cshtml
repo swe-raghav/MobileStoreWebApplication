@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "About";
+}
+<style>
+    h2{
+        font-size:40px;
+        font-weight:bolder;
+        padding-top:99px;
+    }
+
+    body{
+        position:relative;
+        text-align:left;
+    }
+</style>
+<body>
+    <h2>About</h2>
+    <br />
+    <p>
+        <div> MOBIWORLD mobiles Pvt. Ltd. is South India's leading dealer in</div>
+        <br />
+        <div>international and Indian brands of mobile handsets and</div>
+        <br />
+        <div>mobiles accessories founded in 2015.</div>
+    </p>
+    <p>
+        <br />
+
+        <div>MOBI prides itself on its deep understanding of a customer’s needs</div>
+        <br />
+        <div>and well-trained staff that are its biggest strength</div>
+
+    </p>
+    <p>
+        <br />
+        <div> MOBIWORLD believes in the power of teamwork and cooperation, </div>
+        <br />
+        <div>in thinking big together and in the power of unity.</div>
+    </p>
+
+    @using (Html.BeginForm("SessionEmpty", "ShoppingCart", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @*<center><button>@Html.ActionLink("Cancel", "OrderCancel", "ShoppingCart", new { orderNumber = Item.orderNumber }, null)</button></center>*@
+        <center><button>Go To Home</button></center>
+    }
+
+</body>
